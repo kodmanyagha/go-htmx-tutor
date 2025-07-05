@@ -59,7 +59,6 @@ func ReadToDoList() []ToDo {
 
 	defer rows.Close()
 
-	// create an empty slice
 	todos := make([]ToDo, 0)
 
 	for rows.Next() {

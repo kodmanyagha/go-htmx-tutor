@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-htmx-tutor/stringutils"
 	"net/http"
 	"strconv"
 
@@ -45,5 +46,16 @@ func main() {
 		DeleteToDo(id)
 	})
 
-	engine.Run("127.0.0.1:8889")
+	engine.GET("/foo", func(c *gin.Context) {
+		greet_result := stringutils.Greet("emir")
+
+		c.JSON(http.StatusOK, gin.H{
+			"message": greet_result,
+		})
+	})
+
+	server_host := "127.0.0.1:8889"
+	fmt.Printf("Server host: http://%s\n", server_host)
+
+	engine.Run(server_host)
 }
